@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Code2, Database, Cloud, GitBranch, Cpu, Zap } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
 
 const Skills: React.FC = () => {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
@@ -86,30 +87,31 @@ const Skills: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="py-20 bg-gradient-to-br from-surface-900 via-void-800 to-surface-900 relative overflow-hidden">
+    <section id="skills" className="py-20 bg-gradient-to-br from-surface-900 via-void-800 to-surface-900 relative overflow-hidden lg:pl-32">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-cyber-grid opacity-20" />
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-cyber">
-            TECHNICAL <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-400 to-electric-400 animate-glow">ARSENAL</span>
-          </h2>
-          <div className="w-32 h-1 bg-gradient-to-r from-neon-500 via-cyber-500 to-electric-500 mx-auto mb-8 animate-pulse"></div>
-          <p className="text-lg text-cyber-300 max-w-2xl mx-auto font-matrix">
-            &gt; Comprehensive toolkit for building intelligent systems
-          </p>
-        </div>
+        <ScrollReveal direction="fade" delay={200}>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-cyber">
+              TECHNICAL <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-400 to-electric-400 animate-glow">ARSENAL</span>
+            </h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-neon-500 via-cyber-500 to-electric-500 mx-auto mb-8 animate-pulse"></div>
+            <p className="text-lg text-cyber-300 max-w-2xl mx-auto font-matrix">
+              > Comprehensive toolkit for building intelligent systems
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-8 mb-16">
           {skillCategories.map((category, index) => {
             const colorClasses = getColorClasses(category.color);
             return (
-              <div 
-                key={category.title}
-                className={`bg-void-800/30 backdrop-blur-sm border ${colorClasses.border} rounded-2xl p-8 hover:bg-void-800/50 transition-all duration-500 ${colorClasses.glow} group`}
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
+              <ScrollReveal key={category.title} direction={index % 2 === 0 ? 'left' : 'right'} delay={400 + index * 200}>
+                <div 
+                  className={`bg-void-800/30 backdrop-blur-sm border ${colorClasses.border} rounded-2xl p-8 hover:bg-void-800/50 transition-all duration-500 ${colorClasses.glow} group`}
+                >
                 <div className="flex items-center mb-8">
                   <div className={`p-3 bg-gradient-to-r ${colorClasses.bg} rounded-xl mr-4 group-hover:animate-spin`}>
                     {category.icon}
@@ -170,16 +172,18 @@ const Skills: React.FC = () => {
                     </div>
                   ))}
                 </div>
-              </div>
+                </div>
+              </ScrollReveal>
             );
           })}
         </div>
 
         {/* Learning Timeline - Futuristic Version */}
-        <div className="mt-20">
-          <h3 className="text-3xl font-bold text-center text-white mb-12 font-cyber">
-            EVOLUTION_<span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-400 to-electric-400">TIMELINE</span>
-          </h3>
+        <ScrollReveal direction="up" delay={800}>
+          <div className="mt-20">
+            <h3 className="text-3xl font-bold text-center text-white mb-12 font-cyber">
+              EVOLUTION_<span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-400 to-electric-400">TIMELINE</span>
+            </h3>
           
           <div className="relative max-w-4xl mx-auto">
             {/* Central Timeline Beam */}
@@ -261,13 +265,15 @@ const Skills: React.FC = () => {
               );
             })}
           </div>
-        </div>
+          </div>
+        </ScrollReveal>
 
         {/* Skill Matrix Visualization */}
-        <div className="mt-20">
-          <h3 className="text-2xl font-bold text-center text-white mb-8 font-cyber">
-            SKILL_<span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-400 to-cyber-400">MATRIX</span>
-          </h3>
+        <ScrollReveal direction="up" delay={1000}>
+          <div className="mt-20">
+            <h3 className="text-2xl font-bold text-center text-white mb-8 font-cyber">
+              SKILL_<span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-400 to-cyber-400">MATRIX</span>
+            </h3>
           
           <div className="bg-void-900/50 backdrop-blur-sm border border-neon-500/20 rounded-2xl p-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -294,7 +300,8 @@ const Skills: React.FC = () => {
               ))}
             </div>
           </div>
-        </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Github, ExternalLink, Filter, Zap, Eye } from 'lucide-react';
 import type { Project } from '../types';
+import ScrollReveal from './ScrollReveal';
 
 const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -92,7 +93,7 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-br from-void-900 via-surface-800 to-void-900 relative overflow-hidden">
+    <section id="projects" className="py-20 bg-gradient-to-br from-void-900 via-surface-800 to-void-900 relative overflow-hidden lg:pl-32">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-matrix-pattern opacity-20" />
@@ -110,18 +111,21 @@ const Projects: React.FC = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-cyber">
-            PROJECT <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-400 to-electric-400 animate-glow">SHOWCASE</span>
-          </h2>
-          <div className="w-32 h-1 bg-gradient-to-r from-neon-500 via-cyber-500 to-electric-500 mx-auto mb-8 animate-pulse"></div>
-          <p className="text-lg text-cyber-300 max-w-2xl mx-auto font-matrix">
-            &gt; Innovative AI/ML solutions and cutting-edge applications
-          </p>
-        </div>
+        <ScrollReveal direction="fade" delay={200}>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-cyber">
+              PROJECT <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-400 to-electric-400 animate-glow">SHOWCASE</span>
+            </h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-neon-500 via-cyber-500 to-electric-500 mx-auto mb-8 animate-pulse"></div>
+            <p className="text-lg text-cyber-300 max-w-2xl mx-auto font-matrix">
+              > Innovative AI/ML solutions and cutting-edge applications
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* Futuristic Filter System */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16">
+        <ScrollReveal direction="up" delay={400}>
+          <div className="flex flex-wrap justify-center gap-4 mb-16">
           <div className="flex items-center gap-4 bg-void-800/50 backdrop-blur-sm border border-neon-500/30 rounded-2xl p-4">
             <Filter className="w-5 h-5 text-neon-400" />
             <span className="text-neon-400 font-matrix text-sm">FILTER:</span>
@@ -142,18 +146,22 @@ const Projects: React.FC = () => {
               ))}
             </div>
           </div>
-        </div>
+          </div>
+        </ScrollReveal>
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
-            <div
+            <ScrollReveal
               key={project.id}
-              className="group relative bg-void-800/30 backdrop-blur-sm border border-neon-500/20 rounded-2xl overflow-hidden hover:border-neon-500/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-neon-500/20"
-              style={{ animationDelay: `${index * 100}ms` }}
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
+              direction="up"
+              delay={600 + index * 150}
             >
+              <div
+                className="group relative bg-void-800/30 backdrop-blur-sm border border-neon-500/20 rounded-2xl overflow-hidden hover:border-neon-500/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-neon-500/20"
+                onMouseEnter={() => setHoveredProject(project.id)}
+                onMouseLeave={() => setHoveredProject(null)}
+              >
               {/* Project Image with Overlay */}
               <div className="relative overflow-hidden h-48">
                 <img
@@ -233,12 +241,14 @@ const Projects: React.FC = () => {
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-neon-500 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse" />
                 <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyber-500 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse" style={{ animationDelay: '0.5s' }} />
               </div>
-            </div>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
 
         {/* More Projects Terminal */}
-        <div className="text-center mt-16">
+        <ScrollReveal direction="up" delay={1200}>
+          <div className="text-center mt-16">
           <div className="inline-block bg-void-800/50 backdrop-blur-sm border border-neon-500/30 rounded-2xl p-6 hover:border-neon-500/60 transition-all duration-300 group">
             <div className="flex items-center justify-center mb-4">
               <div className="flex space-x-2 mr-4">
@@ -258,7 +268,8 @@ const Projects: React.FC = () => {
               <Zap className="w-4 h-4 text-neon-400 group-hover:animate-pulse" />
             </a>
           </div>
-        </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

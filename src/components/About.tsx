@@ -1,9 +1,10 @@
 import React from 'react';
 import { Code2, Brain, Rocket, Zap } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="py-20 bg-gradient-to-br from-void-900 via-surface-900 to-void-800 relative overflow-hidden">
+    <section id="about" className="py-20 bg-gradient-to-br from-void-900 via-surface-900 to-void-800 relative overflow-hidden lg:pl-32">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-matrix-pattern opacity-30" />
@@ -22,20 +23,23 @@ const About: React.FC = () => {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-cyber">
-            ABOUT <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-400 to-cyber-400 animate-glow">SYSTEM</span>
-          </h2>
-          <div className="w-32 h-1 bg-gradient-to-r from-neon-500 to-cyber-500 mx-auto mb-8 animate-pulse"></div>
-          <p className="text-cyber-300 font-matrix text-lg">
-            &gt; Loading personal_data.json...
-          </p>
-        </div>
+        <ScrollReveal direction="fade" delay={200}>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-cyber">
+              ABOUT <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-400 to-cyber-400 animate-glow">SYSTEM</span>
+            </h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-neon-500 to-cyber-500 mx-auto mb-8 animate-pulse"></div>
+            <p className="text-cyber-300 font-matrix text-lg">
+              > Loading personal_data.json...
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Bio Section */}
-          <div className="space-y-6">
-            <div className="bg-void-800/50 backdrop-blur-sm border border-neon-500/30 rounded-2xl p-8 animate-cyber-pulse">
+          <ScrollReveal direction="left" delay={400}>
+            <div className="space-y-6">
+              <div className="bg-void-800/50 backdrop-blur-sm border border-neon-500/30 rounded-2xl p-8 animate-cyber-pulse">
               <div className="flex items-center mb-4">
                 <div className="w-3 h-3 bg-neon-500 rounded-full mr-3 animate-pulse" />
                 <span className="text-neon-400 font-matrix text-sm">PERSONAL_INFO.txt</span>
@@ -57,10 +61,10 @@ const About: React.FC = () => {
                 I'm currently seeking internship opportunities and research collaborations where I can 
                 contribute to meaningful AI projects while learning from industry experts and academics.
               </p>
-            </div>
+              </div>
 
-            {/* Fun Fact Terminal */}
-            <div className="bg-void-900/80 backdrop-blur-sm border border-electric-500/30 rounded-2xl p-6">
+              {/* Fun Fact Terminal */}
+              <div className="bg-void-900/80 backdrop-blur-sm border border-electric-500/30 rounded-2xl p-6">
               <div className="flex items-center mb-4">
                 <div className="flex space-x-2 mr-4">
                   <div className="w-3 h-3 bg-red-500 rounded-full" />
@@ -77,11 +81,13 @@ const About: React.FC = () => {
                 </p>
                 <p className="text-neon-400 animate-pulse">$ _</p>
               </div>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Skills Cards */}
-          <div className="space-y-6">
+          <ScrollReveal direction="right" delay={600}>
+            <div className="space-y-6">
             <div className="bg-void-800/50 backdrop-blur-sm border border-neon-500/30 rounded-2xl p-6 hover:border-neon-500/50 transition-all duration-300 group">
               <div className="flex items-center mb-4">
                 <div className="p-3 bg-gradient-to-r from-neon-500 to-neon-600 rounded-xl mr-4 group-hover:animate-spin">
@@ -161,7 +167,8 @@ const About: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

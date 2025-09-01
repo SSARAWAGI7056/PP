@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen relative overflow-hidden">
+    <section id="home" className="min-h-screen relative overflow-hidden pt-20">
       {/* Futuristic Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-void-900 via-surface-900 to-void-900">
         {/* Matrix Rain Effect */}
@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-neon-500/5 to-transparent animate-hologram" />
       </div>
 
-      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 lg:pl-32">
         <div className="max-w-5xl mx-auto text-center">
           {/* Holographic Profile */}
           <div className="mb-12 relative">

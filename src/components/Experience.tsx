@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, MapPin, Award, Code, Users, Zap, Trophy } from 'lucide-react';
 import type { Experience } from '../types';
+import ScrollReveal from './ScrollReveal';
 
 const ExperienceSection: React.FC = () => {
   const experiences: Experience[] = [
@@ -69,20 +70,22 @@ const ExperienceSection: React.FC = () => {
   };
 
   return (
-    <section id="experience" className="py-20 bg-gradient-to-br from-surface-900 via-void-800 to-surface-900 relative overflow-hidden">
+    <section id="experience" className="py-20 bg-gradient-to-br from-surface-900 via-void-800 to-surface-900 relative overflow-hidden lg:pl-32">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-cyber-grid opacity-10" />
       
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-cyber">
-            EXPERIENCE <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-400 to-electric-400 animate-glow">LOG</span>
-          </h2>
-          <div className="w-32 h-1 bg-gradient-to-r from-neon-500 via-cyber-500 to-electric-500 mx-auto mb-8 animate-pulse"></div>
-          <p className="text-lg text-cyber-300 max-w-2xl mx-auto font-matrix">
-            &gt; Career progression through AI/ML research and development
-          </p>
-        </div>
+        <ScrollReveal direction="fade" delay={200}>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-cyber">
+              EXPERIENCE <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-400 to-electric-400 animate-glow">LOG</span>
+            </h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-neon-500 via-cyber-500 to-electric-500 mx-auto mb-8 animate-pulse"></div>
+            <p className="text-lg text-cyber-300 max-w-2xl mx-auto font-matrix">
+              > Career progression through AI/ML research and development
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="relative max-w-4xl mx-auto">
           {/* Quantum Timeline */}
@@ -91,10 +94,12 @@ const ExperienceSection: React.FC = () => {
           {experiences.map((experience, index) => {
             const colors = getTypeColor(experience.type);
             return (
-              <div
+              <ScrollReveal
                 key={experience.id}
-                className={`flex items-center mb-16 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} relative group`}
+                direction={index % 2 === 0 ? 'left' : 'right'}
+                delay={400 + index * 200}
               >
+                <div className={`flex items-center mb-16 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} relative group`}>
                 {/* Timeline Node */}
                 <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
                   <div className={`w-16 h-16 bg-gradient-to-r ${colors.bg} rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-2xl transition-all duration-300 animate-cyber-pulse border-4 border-void-900`}>
@@ -143,16 +148,18 @@ const ExperienceSection: React.FC = () => {
 
                 {/* Empty space for alternating layout */}
                 <div className="w-5/12"></div>
-              </div>
+                </div>
+              </ScrollReveal>
             );
           })}
         </div>
 
         {/* Achievements Matrix */}
-        <div className="mt-20">
-          <h3 className="text-3xl font-bold text-center text-white mb-12 font-cyber">
-            ACHIEVEMENT_<span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-400 to-electric-400">REGISTRY</span>
-          </h3>
+        <ScrollReveal direction="up" delay={800}>
+          <div className="mt-20">
+            <h3 className="text-3xl font-bold text-center text-white mb-12 font-cyber">
+              ACHIEVEMENT_<span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-400 to-electric-400">REGISTRY</span>
+            </h3>
           
           <div className="grid md:grid-cols-3 gap-6">
             {[
@@ -231,7 +238,8 @@ const ExperienceSection: React.FC = () => {
               );
             })}
           </div>
-        </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
