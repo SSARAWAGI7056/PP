@@ -82,7 +82,7 @@ const ExperienceSection: React.FC = () => {
             </h2>
             <div className="w-32 h-1 bg-gradient-to-r from-neon-500 via-cyber-500 to-electric-500 mx-auto mb-8 animate-pulse"></div>
             <p className="text-lg text-cyber-300 max-w-2xl mx-auto font-matrix">
-              > Career progression through AI/ML research and development
+              {'>'} Career progression through AI/ML research and development
             </p>
           </div>
         </ScrollReveal>
