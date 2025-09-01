@@ -87,7 +87,7 @@ const Skills: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="py-20 bg-gradient-to-br from-surface-900 via-void-800 to-surface-900 relative overflow-hidden lg:pl-32">
+    <section id="skills" className="py-20 bg-gradient-to-br from-surface-900 via-void-800 to-surface-900 relative overflow-hidden lg:pl-24">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-cyber-grid opacity-20" />
       

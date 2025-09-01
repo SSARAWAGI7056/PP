@@ -93,7 +93,7 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-br from-void-900 via-surface-800 to-void-900 relative overflow-hidden lg:pl-32">
+    <section id="projects" className="py-20 bg-gradient-to-br from-void-900 via-surface-800 to-void-900 relative overflow-hidden lg:pl-24">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-matrix-pattern opacity-20" />

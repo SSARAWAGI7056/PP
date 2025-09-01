@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
+import SmoothScroll from './components/SmoothScroll';
 import SplashScreen from './components/SplashScreen';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
@@ -19,24 +20,26 @@ function App() {
 
   return (
     <ThemeProvider>
-      <div className="relative">
-        {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
-        
-        {!showSplash && (
-          <>
-            <Navigation />
-            <main className="transition-opacity duration-500 ease-in">
-              <Hero />
-              <About />
-              <Skills />
-              <Projects />
-              <Experience />
-              <Contact />
-            </main>
-            <Footer />
-          </>
-        )}
-      </div>
+      <SmoothScroll>
+        <div className="relative">
+          {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+          
+          {!showSplash && (
+            <>
+              <Navigation />
+              <main className="transition-opacity duration-500 ease-in">
+                <Hero />
+                <About />
+                <Skills />
+                <Projects />
+                <Experience />
+                <Contact />
+              </main>
+              <Footer />
+            </>
+          )}
+        </div>
+      </SmoothScroll>
     </ThemeProvider>
   );
 }

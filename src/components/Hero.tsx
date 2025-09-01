@@ -1,191 +1,314 @@
-import React from 'react';
-import { Download, Github, Mail, ArrowDown, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, Zap, Terminal } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
 
-const Hero: React.FC = () => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+const Contact: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [terminalOutput, setTerminalOutput] = useState<string[]>([
+    '> System initialized...',
+    '> Contact module loaded successfully',
+    '> Ready to receive transmission'
+  ]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate terminal output
+    setTerminalOutput(prev => [
+      ...prev,
+      '> Encrypting message...',
+      '> Establishing secure connection...',
+      '> Message transmitted successfully',
+      '> Response expected within 24 hours'
+    ]);
+    
+    setTimeout(() => {
+      alert('Message transmitted successfully! I\'ll respond within 24 hours.');
+      setFormData({ name: '', email: '', message: '' });
+      setIsSubmitting(false);
+    }, 2000);
   };
 
   return (
-    <section id="home" className="min-h-screen relative overflow-hidden pt-20">
-      {/* Futuristic Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-void-900 via-surface-900 to-void-900">
-        {/* Matrix Rain Effect */}
-        <div className="absolute inset-0 opacity-20">
-          {Array.from({ length: 15 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-px bg-gradient-to-b from-transparent via-neon-500 to-transparent animate-matrix-rain"
-              style={{
-                left: `${Math.random() * 100}%`,
-                height: '200px',
-                animationDelay: `${Math.random() * 20}s`,
-                animationDuration: `${15 + Math.random() * 10}s`
-              }}
-            />
-          ))}
-        </div>
+    <section id="contact" className="py-20 bg-gradient-to-br from-void-900 via-surface-900 to-void-900 relative overflow-hidden lg:pl-32">
+      {/* Cyber Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-matrix-pattern opacity-20" />
+        {Array.from({ length: 40 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-neon-400 rounded-full opacity-20 animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${4 + Math.random() * 4}s`
+            }}
+          />
+        ))}
         
-        {/* Floating Particles */}
+        {/* Scanning Lines */}
         <div className="absolute inset-0">
-          {Array.from({ length: 30 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-neon-400 rounded-full opacity-40 animate-float"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${4 + Math.random() * 4}s`
-              }}
-            />
-          ))}
-        </div>
-        
-        {/* Cyber Grid */}
-        <div className="absolute inset-0 bg-cyber-grid opacity-10" />
-        
-        {/* Holographic Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-neon-500/5 to-transparent animate-hologram" />
-      </div>
-
-      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 lg:pl-32">
-        <div className="max-w-5xl mx-auto text-center">
-          {/* Holographic Profile */}
-          <div className="mb-12 relative">
-            <div className="w-40 h-40 mx-auto relative">
-              {/* Outer Glow Ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-neon-500 via-cyber-500 to-electric-500 animate-spin opacity-75" style={{ animationDuration: '8s' }} />
-              <div className="absolute inset-2 rounded-full bg-gradient-to-r from-electric-500 via-neon-500 to-cyber-500 animate-spin opacity-50" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
-              
-              {/* Profile Container */}
-              <div className="absolute inset-4 rounded-full bg-void-900 border-2 border-neon-500/50 flex items-center justify-center animate-cyber-pulse">
-                <span className="text-4xl font-bold bg-gradient-to-r from-neon-400 to-cyber-400 bg-clip-text text-transparent">
-                  PS
-                </span>
-              </div>
-              
-              {/* Floating Icons */}
-              <div className="absolute -top-2 -right-2 w-6 h-6 bg-neon-500 rounded-full flex items-center justify-center animate-bounce">
-                <Sparkles className="w-3 h-3 text-void-900" />
-              </div>
-            </div>
-          </div>
-
-          {/* Main Title with Cyber Effects */}
-          <div className="mb-8 relative">
-            <h1 className="text-6xl md:text-8xl font-bold mb-4 relative">
-              <span className="block text-white font-cyber tracking-wider">
-                PRAVEEN
-              </span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-neon-400 via-cyber-400 to-electric-400 animate-glow font-cyber tracking-widest">
-                SARAWAGI
-              </span>
-            </h1>
-            
-            {/* Glitch Effect Lines */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-neon-500 to-transparent opacity-30 animate-pulse" />
-              <div className="absolute bottom-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyber-500 to-transparent opacity-30 animate-pulse" style={{ animationDelay: '1s' }} />
-            </div>
-          </div>
-
-          {/* Subtitle with Typing Effect */}
-          <div className="mb-6">
-            <p className="text-2xl md:text-3xl text-neon-400 mb-2 font-matrix">
-              &gt; ML_ENGINEER.initialize()
-            </p>
-            <p className="text-lg md:text-xl text-cyber-300 font-light">
-              Building AI-Powered Solutions for Tomorrow
-            </p>
-          </div>
-
-          {/* Status Bar */}
-          <div className="mb-8 max-w-md mx-auto">
-            <div className="bg-void-800/50 backdrop-blur-sm border border-neon-500/30 rounded-lg p-4">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-neon-400 font-matrix">STATUS:</span>
-                <span className="text-cyber-400 animate-pulse">● AVAILABLE FOR OPPORTUNITIES</span>
-              </div>
-              <div className="flex items-center justify-between text-sm mt-2">
-                <span className="text-neon-400 font-matrix">FOCUS:</span>
-                <span className="text-electric-400">3rd Year B.Tech CSE (AIML)</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Futuristic Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <button
-              onClick={() => scrollToSection('projects')}
-              className="group relative px-8 py-4 bg-gradient-to-r from-neon-500 to-cyber-500 text-void-900 font-bold rounded-xl hover:scale-105 transition-all duration-300 overflow-hidden"
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                <span className="font-matrix">&gt;</span>
-                EXPLORE_PROJECTS()
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-cyber-500 to-neon-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </button>
-            
-            <button className="group relative px-8 py-4 border-2 border-neon-500/50 text-neon-400 font-bold rounded-xl hover:bg-neon-500/10 transition-all duration-300 overflow-hidden">
-              <span className="relative z-10 flex items-center gap-2 font-matrix">
-                <Download className="w-5 h-5" />
-                DOWNLOAD_RESUME.pdf
-              </span>
-              <div className="absolute inset-0 bg-neon-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </button>
-            
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="group relative px-8 py-4 border-2 border-electric-500/50 text-electric-400 font-bold rounded-xl hover:bg-electric-500/10 transition-all duration-300 overflow-hidden"
-            >
-              <span className="relative z-10 flex items-center gap-2 font-matrix">
-                <Mail className="w-5 h-5" />
-                INITIATE_CONTACT()
-              </span>
-              <div className="absolute inset-0 bg-electric-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </button>
-          </div>
-
-          {/* Social Matrix */}
-          <div className="flex justify-center space-x-8 mb-16">
-            <a 
-              href="#" 
-              className="group relative w-12 h-12 bg-void-800/50 border border-neon-500/30 rounded-xl flex items-center justify-center hover:border-neon-500 transition-all duration-300 hover:shadow-lg hover:shadow-neon-500/30"
-            >
-              <Github className="w-6 h-6 text-neon-400 group-hover:animate-spin" />
-              <div className="absolute inset-0 bg-neon-500/10 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300" />
-            </a>
-            <a 
-              href="#" 
-              className="group relative w-12 h-12 bg-void-800/50 border border-cyber-500/30 rounded-xl flex items-center justify-center hover:border-cyber-500 transition-all duration-300 hover:shadow-lg hover:shadow-cyber-500/30"
-            >
-              <svg className="w-6 h-6 text-cyber-400 group-hover:animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-              <div className="absolute inset-0 bg-cyber-500/10 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-300" />
-            </a>
-          </div>
-
-          {/* Scroll Indicator */}
-          <div className="animate-bounce">
-            <div className="flex flex-col items-center">
-              <span className="text-neon-400 text-sm font-matrix mb-2">SCROLL_DOWN</span>
-              <ArrowDown className="w-6 h-6 text-neon-400" />
-            </div>
-          </div>
+          <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-neon-500/50 to-transparent animate-pulse" />
+          <div className="absolute bottom-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyber-500/50 to-transparent animate-pulse" style={{ animationDelay: '2s' }} />
         </div>
       </div>
 
-      {/* Ambient Light Effects */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyber-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-electric-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-cyber">
+            INITIATE <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-400 to-electric-400 animate-glow">CONTACT</span>
+          </h2>
+          <div className="w-32 h-1 bg-gradient-to-r from-neon-500 via-cyber-500 to-electric-500 mx-auto mb-8 animate-pulse"></div>
+          <p className="text-xl text-cyber-300 max-w-2xl mx-auto font-matrix">
+            &gt; Ready to collaborate on innovative AI projects? Let's connect!
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Contact Form Terminal */}
+          <div className="bg-void-800/50 backdrop-blur-sm border border-neon-500/30 rounded-2xl overflow-hidden hover:border-neon-500/60 transition-all duration-500 animate-cyber-pulse">
+            {/* Terminal Header */}
+            <div className="bg-void-900/80 px-6 py-4 border-b border-neon-500/30">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="flex space-x-2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full" />
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full" />
+                    <div className="w-3 h-3 bg-neon-500 rounded-full animate-pulse" />
+                  </div>
+                  <span className="text-neon-400 font-matrix text-sm">contact_form.exe</span>
+                </div>
+                <Terminal className="w-5 h-5 text-neon-400" />
+              </div>
+            </div>
+
+            <div className="p-8">
+              <div className="mb-6">
+                <div className="bg-void-900/50 rounded-lg p-4 font-matrix text-sm">
+                  {terminalOutput.map((line, index) => (
+                    <div key={index} className="text-neon-400 mb-1 animate-fade-in" style={{ animationDelay: `${index * 200}ms` }}>
+                      {line}
+                    </div>
+                  ))}
+                  <div className="text-neon-400 animate-pulse">$ _</div>
+                </div>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-neon-400 mb-2 font-matrix">
+                    &gt; SENDER_NAME:
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 bg-void-700/50 border border-neon-500/30 rounded-lg text-white font-matrix placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-neon-500 focus:border-transparent transition-all hover:border-neon-500/60"
+                    placeholder="Enter identification..."
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-cyber-400 mb-2 font-matrix">
+                    &gt; TRANSMISSION_ADDRESS:
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 bg-void-700/50 border border-cyber-500/30 rounded-lg text-white font-matrix placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyber-500 focus:border-transparent transition-all hover:border-cyber-500/60"
+                    placeholder="Enter communication channel..."
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-electric-400 mb-2 font-matrix">
+                    &gt; MESSAGE_PAYLOAD:
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={6}
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 bg-void-700/50 border border-electric-500/30 rounded-lg text-white font-matrix placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-electric-500 focus:border-transparent transition-all resize-none hover:border-electric-500/60"
+                    placeholder="Compose your transmission..."
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full px-6 py-4 bg-gradient-to-r from-neon-500 to-cyber-500 text-white font-bold rounded-lg hover:shadow-lg hover:shadow-neon-500/30 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed font-matrix group"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      TRANSMITTING...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 group-hover:animate-pulse" />
+                      SEND_MESSAGE()
+                    </>
+                  )}
+                </button>
+              </form>
+            </div>
+          </div>
+
+          {/* Contact Info & Social Matrix */}
+          <div className="space-y-8">
+            {/* Contact Information */}
+            <div className="bg-void-800/50 backdrop-blur-sm border border-cyber-500/30 rounded-2xl p-8 hover:border-cyber-500/60 transition-all duration-500">
+              <div className="flex items-center mb-6">
+                <Zap className="w-6 h-6 text-cyber-400 mr-3 animate-pulse" />
+                <h3 className="text-2xl font-bold text-white font-cyber">CONTACT_PROTOCOLS</h3>
+              </div>
+              
+              <div className="space-y-6">
+                <div className="flex items-start gap-4 group">
+                  <div className="p-3 bg-gradient-to-r from-neon-500 to-neon-600 rounded-xl group-hover:animate-spin">
+                    <Mail className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1 font-matrix">EMAIL_CHANNEL</h4>
+                    <p className="text-neon-400 font-matrix">praveen.sarawagi@gmail.com</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 group">
+                  <div className="p-3 bg-gradient-to-r from-cyber-500 to-cyber-600 rounded-xl group-hover:animate-pulse">
+                    <Phone className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1 font-matrix">VOICE_PROTOCOL</h4>
+                    <p className="text-cyber-400 font-matrix">+91 XXXX-XXXX-XX</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 group">
+                  <div className="p-3 bg-gradient-to-r from-electric-500 to-electric-600 rounded-xl group-hover:animate-bounce">
+                    <MapPin className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1 font-matrix">LOCATION_DATA</h4>
+                    <p className="text-electric-400 font-matrix">India</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Social Network Matrix */}
+            <div className="bg-void-800/50 backdrop-blur-sm border border-electric-500/30 rounded-2xl p-8 hover:border-electric-500/60 transition-all duration-500">
+              <h3 className="text-xl font-bold text-white mb-6 font-cyber flex items-center">
+                <Terminal className="w-5 h-5 mr-3 text-electric-400" />
+                SOCIAL_NETWORK
+              </h3>
+              
+              <div className="grid grid-cols-3 gap-4">
+                <a
+                  href="#"
+                  className="group relative p-6 bg-void-700/50 border border-neon-500/30 rounded-xl hover:bg-void-700/70 hover:border-neon-500/60 transition-all duration-300 text-center overflow-hidden"
+                >
+                  <Github className="w-8 h-8 text-neon-400 mx-auto mb-3 group-hover:animate-spin" />
+                  <span className="text-sm text-white font-matrix">GITHUB</span>
+                  <div className="absolute inset-0 bg-neon-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </a>
+                
+                <a
+                  href="#"
+                  className="group relative p-6 bg-void-700/50 border border-cyber-500/30 rounded-xl hover:bg-void-700/70 hover:border-cyber-500/60 transition-all duration-300 text-center overflow-hidden"
+                >
+                  <Linkedin className="w-8 h-8 text-cyber-400 mx-auto mb-3 group-hover:animate-pulse" />
+                  <span className="text-sm text-white font-matrix">LINKEDIN</span>
+                  <div className="absolute inset-0 bg-cyber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </a>
+                
+                <a
+                  href="#"
+                  className="group relative p-6 bg-void-700/50 border border-electric-500/30 rounded-xl hover:bg-void-700/70 hover:border-electric-500/60 transition-all duration-300 text-center overflow-hidden"
+                >
+                  <Twitter className="w-8 h-8 text-electric-400 mx-auto mb-3 group-hover:animate-bounce" />
+                  <span className="text-sm text-white font-matrix">TWITTER</span>
+                  <div className="absolute inset-0 bg-electric-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </a>
+              </div>
+            </div>
+
+            {/* Resume Download Terminal */}
+            <div className="bg-gradient-to-r from-void-800/50 to-surface-800/50 backdrop-blur-sm border border-matrix-500/30 rounded-2xl p-8 hover:border-matrix-500/60 transition-all duration-500">
+              <div className="flex items-center mb-4">
+                <div className="flex space-x-2 mr-4">
+                  <div className="w-3 h-3 bg-red-500 rounded-full" />
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full" />
+                  <div className="w-3 h-3 bg-matrix-500 rounded-full animate-pulse" />
+                </div>
+                <span className="text-matrix-400 font-matrix text-sm">resume_downloader.exe</span>
+              </div>
+              
+              <h3 className="text-xl font-bold text-white mb-4 font-cyber">DOWNLOAD_RESUME</h3>
+              <p className="text-gray-300 mb-6 font-matrix text-sm">
+                &gt; Access comprehensive skill matrix and project documentation
+              </p>
+              
+              <button className="w-full px-6 py-4 bg-gradient-to-r from-matrix-500 to-matrix-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-matrix-500/30 transition-all duration-300 flex items-center justify-center gap-2 font-matrix group">
+                <Mail className="w-5 h-5 group-hover:animate-pulse" />
+                EXECUTE_DOWNLOAD.pdf
+              </button>
+            </div>
+
+            {/* Status Panel */}
+            <div className="bg-void-900/80 backdrop-blur-sm border border-neon-500/20 rounded-2xl p-6">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-neon-400 font-matrix text-sm">SYSTEM_STATUS</span>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-neon-500 rounded-full animate-pulse" />
+                  <span className="text-neon-400 font-matrix text-xs">ONLINE</span>
+                </div>
+              </div>
+              
+              <div className="space-y-3 text-sm font-matrix">
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Response Time:</span>
+                  <span className="text-cyber-400">&lt; 24 hours</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Availability:</span>
+                  <span className="text-neon-400">24/7 Monitoring</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Security Level:</span>
+                  <span className="text-electric-400">Maximum Encryption</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
 
-export default Hero;
+export default Contact;

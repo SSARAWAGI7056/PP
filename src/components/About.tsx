@@ -4,7 +4,7 @@ import ScrollReveal from './ScrollReveal';
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="py-20 bg-gradient-to-br from-void-900 via-surface-900 to-void-800 relative overflow-hidden lg:pl-32">
+    <section id="about" className="py-20 bg-gradient-to-br from-void-900 via-surface-900 to-void-800 relative overflow-hidden lg:pl-24">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-matrix-pattern opacity-30" />
